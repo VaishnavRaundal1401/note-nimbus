@@ -1,4 +1,5 @@
 import React from 'react'
+import { useContext } from 'react'
 
 function Home() {
   return (
