@@ -4,13 +4,17 @@ import Home from './components/Home';
 import Navbar from './components/Navbar';
 import About from './components/About';
 import NoteState from './context/notes/NoteState';
+import Alert from './components/Alert';
+// import { useState } from 'react';
 
 function App() {
+
   return (
     <>
     <NoteState>
       <BrowserRouter>
         <Navbar/>
+        <Alert message = {'Congratulations Notes Created Successfully !!'}/>
         <div className='container'>
         <Routes>
             <Route path="/" element={<Home/>}/>
