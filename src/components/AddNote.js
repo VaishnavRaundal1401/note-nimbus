@@ -2,18 +2,20 @@ import React, {useContext, useState} from 'react'
 import noteContext from '../context/notes/noteContext'
 
 function AddNote() {
-    const context = useContext(noteContext);
+  
+  const context = useContext(noteContext);
   const {addNotes} = context;
 
   const [note, setNote] = useState({title:'', description:'', tag:'Default'})
   
+  const onChange =(e) =>{
+        setNote({...note, [e.target.name]: e.target.value})
+  }
   const handleClick =(e) =>{
     e.preventDefault();
     addNotes(note.title, note.description, note.tag);
   }
-  const onChange =(e) =>{
-        setNote({...note, [e.target.name]: e.target.value})
-  }
+
   return (
     <div>
       <div className="container my-3">
@@ -31,7 +33,7 @@ function AddNote() {
             <input type="checkbox" className="form-check-input" id="exampleCheck1"/>
             <label className="form-check-label" htmlFor="exampleCheck1">Check me out</label>
           </div>
-          <button type="submit" className="btn btn-primary" onClick={handleClick} >Submit</button>
+          <button type="submit" className="btn btn-outline-primary" onClick={handleClick} >Add Note</button>
         </form>
       </div>
     </div>

@@ -7,11 +7,11 @@ import AddNote from './AddNote';
 function Notes() {
     const context = useContext(noteContext);
     // eslint-disable-next-line
-  const {notes,addNotes} = context;
+  const {notes} = context;
   return (
     <>
     <AddNote/>
-    <div className="row my-3">
+    <div className="row">
         <h1>Your Notes</h1>
         {notes.map((notes) =>{
           return <Notesitem key={notes._id} notes = {notes}/>
