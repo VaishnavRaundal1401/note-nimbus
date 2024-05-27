@@ -13,7 +13,7 @@ function Notes() {
     return () => {
       fetchNotes();
     }
-  }, [])
+  },[])
   
   return (
     <>
