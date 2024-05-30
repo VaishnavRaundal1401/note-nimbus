@@ -59,6 +59,7 @@ router.post('/login',[
     body('email','Enter a valid email').isEmail().notEmpty(),
     body('password','Password length must be 5 characters').notEmpty()
 ] ,async (req, res)=>{
+    let success = false;
     // console.log(req);
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
@@ -70,11 +71,13 @@ router.post('/login',[
         let user = await User.findOne({email});
         //if not send error
         if(!user){
-            return res.status(400).json({error:"please try to login with correct credentials"});
+            success = false;
+            return res.status(400).json({success, error:"please try to login with correct credentials"});
         }
         const passCompare = await bcrypt.compare(password, user.password);
         if(!passCompare){
-            return res.status(400).json({error:"please try to login with correct credentials"});
+            success = false;
+            return res.status(400).json({success, error:"please try to login with correct credentials"});
         }
         const data = {
             user:{
@@ -83,7 +86,8 @@ router.post('/login',[
         }
         //send authToken i.e, the id and the token secret to the user while 1st login
         const authToken = jwt.sign(data, JWT_SECRET);
-        res.json({authToken});
+        success = true;
+        res.json({success, authToken});
 
     } catch (error) {
         console.error(error.message);
