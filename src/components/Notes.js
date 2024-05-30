@@ -4,7 +4,7 @@ import noteContext from '../context/notes/noteContext';
 import Notesitem from './Notesitem';
 import AddNote from './AddNote';
 
-function Notes() {
+function Notes(props) {
 
   const [note, setNote] = useState({id:"", etitle:'', edescription:'', etag:''})
   
@@ -23,18 +23,19 @@ function Notes() {
 
   const updateNote = (currentNote) =>{
     ref.current.click();
-    setNote({id:currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag} );
+    setNote({id:currentNote._id, etitle:currentNote.title, edescription:currentNote.description, etag:currentNote.tag});
   }
   const handleClick =(e) =>{
     console.log('updating the note', note);  
     updateNotes(note.id, note.etitle, note.edescription, note.etag)
     refClose.current.click();
+    props.showAlert('Note updated successfully', 'success');
   }
   const ref = useRef(null)
   const refClose = useRef(null)
   return (
     <>
-    <AddNote/>
+    <AddNote showAlert={props.showAlert} />
 <button  type="button" ref={ref} className="btn btn-primary d-none" data-bs-toggle="modal" data-bs-target="#exampleModal">
   Launch demo modal
 </button>
@@ -74,7 +75,7 @@ function Notes() {
           {notes.length === 0 && 'No notes to display'}
         </div>
         {notes.map((notes) =>{
-          return <Notesitem key={notes._id} updateNote={updateNote} notes = {notes}/>
+          return <Notesitem key={notes._id} updateNote={updateNote} notes = {notes} showAlert={props.showAlert} />
         })}
     </div>
     </>
