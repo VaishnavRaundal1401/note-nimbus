@@ -13,10 +13,12 @@ router.post('/User',[
     body('email','Enter a valid email').isEmail().notEmpty(),
     body('password','Password length must be 5 characters').isLength({min:5}).notEmpty()
 ] ,async (req, res)=>{
+    let success = false;
     //If there are errors, return Bad request and the errors
     const errors = validationResult(req);
     if (!errors.isEmpty()) {
-        return res.status(400).json({ errors: errors.array() });
+        success = false;
+        return res.status(400).json({success,  errors: errors.array() });
     }
 
     try{
@@ -24,13 +26,16 @@ router.post('/User',[
         let user = await User.findOne({email:req.body.email});
         let pass = await User.findOne({password:req.body.password});
         if(pass && user){
-            return res.status(400).json({error:"sorry a user with this password and email already exists"});
+            success = false;
+            return res.status(400).json({success, error:"sorry a user with this password and email already exists"});
         }
         else if(user){
-            return res.status(400).json({error:"sorry a user with this email already exists"});
+            success = false;
+            return res.status(400).json({success, error:"sorry a user with this email already exists"});
         }
         else if(pass){
-            return res.status(400).json({error:"sorry a user with this password already exists"});
+            success = false;
+            return res.status(400).json({success, error:"sorry a user with this password already exists"});
         }
 
         const salt = await bcrypt.genSalt(10);
@@ -48,7 +53,8 @@ router.post('/User',[
             }
         }
         const authToken = jwt.sign(data, JWT_SECRET);
-        res.json({authToken});
+        success = true;
+        res.json({success, authToken});
     }catch (error) {
         console.error(error.message);
         res.status(500).send("Some Error occurred");
