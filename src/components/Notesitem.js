@@ -5,7 +5,7 @@ function Notesitem(props) {
 
   const context = useContext(noteContext);
   const {deleteNote} = context;
-    const {notes, updateNote} = props;
+  const {notes, updateNote} = props;
   return (
     <div className='col-md-3'>
         <div className="card my-3">

@@ -3,9 +3,11 @@ import { useContext, useEffect, useRef, useState } from 'react'
 import noteContext from '../context/notes/noteContext';
 import Notesitem from './Notesitem';
 import AddNote from './AddNote';
+import { useNavigate } from "react-router-dom";
 
 function Notes(props) {
 
+  let history = useNavigate();
   const [note, setNote] = useState({id:"", etitle:'', edescription:'', etag:''})
   
   const onChange =(e) =>{
@@ -17,7 +19,13 @@ function Notes(props) {
 
   useEffect(() => {
     return () => {
-      fetchNotes();
+      if(localStorage.getItem('token'))
+        {
+          fetchNotes();
+        }
+        else{
+            history('/login');
+        }
     }
   },[])
 
