@@ -77,7 +77,7 @@ function Notes(props) {
     </div>
   </div>
 </div>
-    <div className="row">
+    <div className="container row" style={{marginLeft:'30px'}}>
         <h1>Your Notes</h1>
         <div className="container">
           {notes.length === 0 && 'No notes to display'}
