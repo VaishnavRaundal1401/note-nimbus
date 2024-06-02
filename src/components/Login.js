@@ -31,7 +31,7 @@ const Login = (props) => {
     }
 
   return (
-    <div className='container'>
+    <div className='container my-5 col-md-4'style={{border:'2px solid gray' ,borderRadius:'10px', padding:'10px 20px'}}>
         <h1>Login</h1>
         <form onSubmit={handleSubmit}>
             <div className="my-3">
