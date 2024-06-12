@@ -31,7 +31,7 @@ const Signup = (props) => {
         setCredentials({...credentials, [e.target.name]: e.target.value})
     }
   return (
-    <div className='container my-4 col-md-4' style={{border:'2px solid gray', borderRadius:'10px', padding:'10px 20px'}}>
+    <div className='container col-md-4' style={{border:'2px solid gray', borderRadius:'10px', padding:'10px 20px', marginTop:'4rem' }}>
       <h1>Sign Up</h1>
       <form onSubmit={handleSubmit}>
       <div className="mb-3">

@@ -26,9 +26,9 @@ function Navbar() {
         <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/home"? "active": " " }`} aria-current="page" to="/home" style={{color:'white', fontSize:'1.2rem'}}>Home</Link>
         </li>
-        <li className="nav-item">
+        {/* <li className="nav-item">
           <Link className={`nav-link ${location.pathname==="/about"? "active": " " }`} to="/about" style={{color:'white', fontSize:'1.2rem'}}>About</Link>
-        </li>
+        </li> */}
       </ul>
       {!localStorage.getItem('token')? <form className="d-flex">
       <Link className={`btn btn-success mx-2 ${isLoginPage? 'd-none':''}`} to='/login' role="button">Login</Link>

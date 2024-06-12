@@ -77,7 +77,9 @@ function Notes(props) {
     </div>
   </div>
 </div>
-    <div className="container row" style={{marginLeft:'30px'}}>
+
+
+<div className="container row" style={{marginLeft:'30px'}}>
         <h1>Your Notes</h1>
         <div className="container">
           {notes.length === 0 && 'No notes to display'}
@@ -85,7 +87,7 @@ function Notes(props) {
         {notes.map((notes) =>{
           return <Notesitem key={notes._id} updateNote={updateNote} notes = {notes} showAlert={props.showAlert} />
         })}
-    </div>
+</div>
     </>
   )
 }
