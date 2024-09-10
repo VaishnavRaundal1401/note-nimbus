@@ -1,6 +1,6 @@
 body {
     min-height: 100vh;
-    position: relative; /* Ensure that the body is positioned relatively for the pseudo-element positioning */
+    position: relative; 
   }
   
   body::before {
